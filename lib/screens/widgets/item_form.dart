@@ -127,10 +127,14 @@ class _ItemFormState extends State<ItemForm> {
     if (scannedBarcode != null && scannedBarcode.isNotEmpty) {
       setState(() {
         _itemCodeController.text = scannedBarcode;
+
       });
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('تمت إضافة الباركود: $scannedBarcode')),
       );
+      if(_formKey.currentState != null && _formKey.currentState!.validate()){
+        _addOrUpdateProduct();
+      }
     }
   }
 
